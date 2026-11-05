@@ -6,6 +6,8 @@ import { UserProvider } from './UserContext';
 import TabNavigator from './TabNavigator';
 import LoginScreen from './Screens/LoginScreen';
 import SignupScreen from './Screens/SignupScreen';
+import ExperienceForm from './Screens/ExperienceForm';
+import { VaultProvider } from './VaultContext';
 
  const Stack = createNativeStackNavigator();
 
@@ -13,13 +15,16 @@ export default function AppNavigation() {
  
   return (
    <UserProvider>
+    <VaultProvider>
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LoginScreen">
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="SignupScreen" component={SignupScreen} />
-        <Stack.Screen name="TabNavigator" component={TabNavigator} />
+        <Stack.Screen name="TabNavigator" component={TabNavigator} options={{ headerShown: false }} />
+        <Stack.Screen name="ExperienceForm" component={ExperienceForm} options={{ title: 'Experience' }} />
       </Stack.Navigator>
     </NavigationContainer>
+    </VaultProvider>
   </UserProvider>
   );
 }
